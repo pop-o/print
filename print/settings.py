@@ -40,9 +40,11 @@ INSTALLED_APPS = [
     "django",
     "rest_framework",
     "function",
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -123,3 +125,34 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Allow specific domains
+CORS_ALLOWED_ORIGINS = [
+    "http://192.168.1.54",
+    "http://localhost:3000",
+]
+
+
+# Or allow all origins (not recommended for production)
+CORS_ALLOW_ALL_ORIGINS = True
+
+# Allow credentials (e.g., cookies, authorization headers)
+CORS_ALLOW_CREDENTIALS = True
+
+# Specify HTTP methods allowed
+CORS_ALLOW_METHODS = [
+    "GET",
+    "POST",
+    "PUT",
+    "DELETE",
+    "OPTIONS",
+    "PATCH",
+]
+
+# Specify headers allowed
+CORS_ALLOW_HEADERS = [
+    "content-type",
+    "authorization",
+    "tenant",
+    "ngrok-skip-browser-warning",
+]
